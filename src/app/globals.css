@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-gradient {
+  background: linear-gradient(
+    to right,
+    rgb(252, 214, 255, 0.7),
+    rgb(41, 216, 255, 0.7),
+    rgb(255, 253, 128, 0.7),
+    rgb(248, 154, 191, 0.7),
+    rgb(252, 214, 255, 0.7)
+  );
+}
+
+.hero-gradient {
+  background: linear-gradient(
+    to bottom,
+    #000,
+    #200d42 30%,
+    #4f21a1 65%,
+    #a463db 82%
+  );
+}
+
+.clip-gradient {
+  background: linear-gradient(
+    to right,
+    #f87aff,
+    #fb93d0,
+    #ffdd99,
+    #c3f0b2,
+    #2fd8fe
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+}
