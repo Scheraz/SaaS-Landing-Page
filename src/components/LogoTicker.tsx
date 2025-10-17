@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import acmeLogo from '../assets/images/acme.png'
 import quantumLogo from '../assets/images/quantum.png'
@@ -5,6 +6,7 @@ import echoLogo from '../assets/images/echo.png'
 import celestialLogo from '../assets/images/celestial.png'
 import pulseLogo from '../assets/images/pulse.png'
 import apexLogo from '../assets/images/apex.png'
+import { motion } from 'framer-motion'
 
 const images = [
   { src: acmeLogo, alt: 'Acme Logo' },
@@ -20,25 +22,43 @@ export const LogoTicker = () => {
     <div className="bg-black text-white py-[72px] sm:py-24">
       <div className="container">
         <h2 className="text-xl text-center text-white/70">
-          Trusted by world most innovative teams
+          Trusted by world’s most innovative teams
         </h2>
+
         <div
-          className="overflow-hidden mt-9 relative
-        before:content-[''] before:absolute before:h-full before:w-5 before:left-0 before:top-0
-        after:content-[''] after:absolute after:h-full after:w-5 after:right-0 after:top-0 
-        before:bg-[linear-gradient(to_right,#000,rgb(0,0,0,0))] 
-        after:bg-[linear-gradient(to_left,#000,rgb(0,0,0,0))]"
+          className="flex overflow-hidden mt-9 relative
+          before:content-[''] before:z-10 before:absolute before:h-full before:w-5 before:left-0 before:top-0
+          after:content-[''] after:absolute after:h-full after:w-5 after:right-0 after:top-0 
+          before:bg-[linear-gradient(to_right,#000,rgb(0,0,0,0))] 
+          after:bg-[linear-gradient(to_left,#000,rgb(0,0,0,0))]"
         >
-          <div className="flex gap-16 justify-center">
-            {images.map(({ src }) => (
+          <motion.div
+            className="flex gap-16 flex-none pr-16"
+            transition={{
+              duration: 3,
+              ease: 'linear',
+              repeat: Infinity,
+            }}
+            initial={{ translateX: 0 }}
+            animate={{ translateX: '-50%' }}
+          >
+            {images.map(({ src, alt }) => (
               <Image
-                key={src}
+                key={alt}
                 src={src}
-                alt={src}
+                alt={alt}
                 className="flex-none h-8 w-auto"
               />
             ))}
-          </div>
+            {images.map(({ src, alt }) => (
+              <Image
+                key={`${alt}-duplicate`}
+                src={src}
+                alt={alt}
+                className="flex-none h-8 w-auto"
+              />
+            ))}
+          </motion.div>
         </div>
       </div>
     </div>

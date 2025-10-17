@@ -4,6 +4,7 @@ import React from 'react'
 import { useState } from 'react'
 import clsx from 'clsx'
 import MinusIcon from '../assets/icons/minus.svg'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const items = [
   {
@@ -45,14 +46,17 @@ const AcccordionItem = ({
         <span className="flex-1 text-lg font-bold">{question}</span>
         {isOpen ? <MinusIcon /> : <PlusIcon />}{' '}
       </div>
-      <div
-        className={clsx('mt-4', {
-          hidden: !isOpen,
-          '': isOpen === true,
-        })}
-      >
-        {answer}
-      </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+            animate={{ opacity: 1, height: 'auto', marginTop: '16px' }}
+            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+          >
+            {answer}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
